@@ -1,0 +1,157 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.row{
+  /* position: absolute; */
+  right: 0;
+  /* width: 80%; */
+  /* display: flex; */
+  justify-content: space-around;
+}
+
+.card{
+  margin: 20px;
+}
+.card-img-top{
+  width: 100%;;
+}
+.header-main {
+  width: 100%;
+}
+.list{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+.list li{
+  list-style: none;
+  font-size: 22px;
+  border: 2px solid ;
+  padding:3px 20px;
+  border-radius: 10px;
+  background: #c9c9c9;
+}
+
+.home{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  font-size: 70px;
+}
+
+.nav-main{
+  /* position: absolute; */
+  width: 300px;
+  height: 100vh;
+  top: 0px;
+  left: 0;
+  background: white;
+  position: fixed;
+}
+.nav-list{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-list li{
+  list-style: none;
+  font-size: 22px;
+  border: 2px solid ;
+  padding:3px 20px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.login{
+  /* background-color: #e3e6f3; */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+}
+
+.app-container {
+  text-align: center;
+}
+
+.auth-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: auto;
+  
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #088178;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.auth-container button:hover {
+  background-color: #16948c;
+}
+
+.auth-container p {
+  margin-top: 20px;
+}
+
+.auth-container a {
+  color: #5cb85c;
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+.login-btn{
+  border: 1px solid #088178;
+  border-radius: 7px;
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.3s ease;
+  background-color: #088178;
+}
+
+.login-btn:hover{
+  color: #fff;
+  background-color: #278e87;
+}
