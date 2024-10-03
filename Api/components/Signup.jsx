@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const SignUp = () => {
-
   const [storeData, setStoreData] = useState([]);
   const [userDetail, setUserDetail] = useState({
     username: "",

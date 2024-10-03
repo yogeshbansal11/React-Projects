@@ -1,80 +1,21 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
-// import "react-lazy-load-image-component/src/effects/blur.css";
-
-// function Data() {
-//   const [fetch, setFetch] = useState([]);
-//   const [loading, setloading] = useState(true);
-//   // const filtered = list.filter((item) => {
-//   //   return item.toLowerCase().includes(search.toLowerCase())
-//   // })
-
-//   async function fetchData() {
-//     const res = await axios.get("https://fakestoreapi.com/products");
-//     setFetch(res.data);
-//     setloading(false)
-//   }
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-//   console.log(fetch);
-
-//   return (
-//     <div className="main">
-//       <div className="row">
-//         {loading ? (<h1>Loading...</h1>) : ( 
-//           fetch.map((item, i) => (
-//             <div className="card" key={i} style={{ width: "20rem" }}>
-//               <LazyLoadImage
-//                 src={item.image}
-//                  effect="blur"
-//                 className="card-img-top"
-//                 alt="..."
-//                 height={300}
-//                 // width={200}
-//               />
-  
-//               <div className="card-body">
-//                 <h5 className="card-title">{item.title}</h5>
-//                 <h3>$ {item.price}</h3>
-//                 <h6>Rating: {item.rating.rate}</h6>
-//                 <p className="card-text">
-//                   Some quick example text to build on the card title and make up
-//                   the bulk of the card's content.
-//                 </p>
-//                 {/* <a href="#" className="btn btn-primary">
-//                   Go somewhere
-//                   </a> */}
-//               </div>
-//             </div>
-//           ))
-//         )}
-        
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Data;
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Link } from "react-router-dom";
 
 function Data() {
   const [fetch, setFetch] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [Search, setSearch] = useState("");
-  const [Sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
+  const [ratingVal, setRatingVal] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(null); // For modal
 
   async function fetchData() {
     const res = await axios.get("https://fakestoreapi.com/products");
     setFetch(res.data);
     setLoading(false);
-    console.log(res.data);
   }
 
   useEffect(() => {
@@ -83,63 +24,111 @@ function Data() {
 
   const Filter = fetch.filter((item) => {
     return (
-      item.title?.toLowerCase().includes(Search?.toLowerCase() || '') ||
-      item.description?.toLowerCase().includes(Search?.toLowerCase() || '') ||
-      item.category?.toLowerCase().includes(Search?.toLowerCase() || '')
+      item.title?.toLowerCase().includes(search?.toLowerCase() || "") ||
+      item.description?.toLowerCase().includes(search?.toLowerCase() || "") ||
+      item.category?.toLowerCase().includes(search?.toLowerCase() || "")
     );
   });
 
-
   const Sorttest = () => {
-    if (Sort == "a") {
-      return [...Filter].sort((a, b) => a.price - b.price);
+    const ratingValue = ratingVal;
+    const filteredByRating = Filter.filter(
+      (item) => item.rating.rate >= ratingValue
+    );
+
+    if (sort === "a") {
+      return [...filteredByRating].sort((a, b) => a.price - b.price);
     }
-    if (Sort == "b") {
-      return [...Filter].sort((a, b) => b.price - a.price);
+    if (sort === "b") {
+      return [...filteredByRating].sort((a, b) => b.price - a.price);
     }
-    return Filter;
+
+    return filteredByRating;
+  };
+
+  const openModal = (product) => {
+    setSelectedProduct(product); // Open the modal with the selected product
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null); // Close the modal
   };
 
   return (
     <div className="main">
-      <input type="search" onInput={(e) => setSearch(e.target.value)} />
+      <input
+        type="search"
+        onInput={(e) => setSearch(e.target.value)}
+        placeholder="search"
+      />
       <button onClick={() => setSort("a")}>Low to high</button>
       <button onClick={() => setSort("b")}>High to low</button>
+      <label htmlFor="Rating">Rating:</label>
+      <select
+        name="Rating"
+        id="Rating"
+        onChange={(e) => setRatingVal(e.target.value)}
+      >
+        <option value="1">1 and above</option>
+        <option value="2">2 and above</option>
+        <option value="3">3 and above</option>
+        <option value="4">4 and above</option>
+        <option value="5">5</option>
+      </select>
+
       <div className="row">
         {loading ? (
           <h1>Loading...</h1>
         ) : (
-          Sorttest() &&
           Sorttest().map((item, i) => (
             <div className="card" key={i} style={{ width: "20rem" }}>
               <LazyLoadImage
                 src={item.image}
                 effect="blur"
                 className="card-img-top"
-                alt="..."
+                alt={item.title}
                 height={300}
-                // width={200}
               />
-
-              {/* <img src={item.image} className="card-img-top" alt="..." height={300} width={200} /> */}
-
               <div className="card-body">
                 <h5 className="card-title">{item.title}</h5>
                 <h3>$ {item.price}</h3>
                 <h6>Rating: {item.rating.rate}</h6>
-                <p className="card-text">
-                  {item.description}
-                </p>
-                {/* <a href="#" className="btn btn-primary">
-                Go somewhere
-                </a> */}
+                <p className="card-text">{item.description}</p>
+                <div className="btn">
+                  <button className="btn-link">Add To Cart</button>
+                  <button className="btn-link" onClick={() => openModal(item)}>
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
           ))
         )}
       </div>
+
+      {/* Modal */}
+      {selectedProduct && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h2>{selectedProduct.title}</h2>
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.title}
+              height={300}
+              width={300}
+            />
+            <h3>$ {selectedProduct.price}</h3>
+            <p>{selectedProduct.description}</p>
+            <p>Category: {selectedProduct.category}</p>
+            <p>Rating: {selectedProduct.rating.rate}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Data;
+export default Data;
