@@ -12,6 +12,8 @@ function Data() {
   const [ratingVal, setRatingVal] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null); // For modal
 
+  // API FETCH PROCESS
+
   async function fetchData() {
     const res = await axios.get("https://fakestoreapi.com/products");
     setFetch(res.data);
@@ -22,6 +24,9 @@ function Data() {
     fetchData();
   }, []);
 
+
+  // SEARCHING
+
   const Filter = fetch.filter((item) => {
     return (
       item.title?.toLowerCase().includes(search?.toLowerCase() || "") ||
@@ -29,6 +34,10 @@ function Data() {
       item.category?.toLowerCase().includes(search?.toLowerCase() || "")
     );
   });
+
+
+  //  FILTER AND RATING K LIYE
+
 
   const Sorttest = () => {
     const ratingValue = ratingVal;
@@ -45,6 +54,9 @@ function Data() {
 
     return filteredByRating;
   };
+    
+  //  VIEW DETAILS PROCESS
+
 
   const openModal = (product) => {
     setSelectedProduct(product); // Open the modal with the selected product
@@ -54,11 +66,13 @@ function Data() {
     setSelectedProduct(null); // Close the modal
   };
 
+
+
   return (
     <div className="main">
       <input
         type="search"
-        onInput={(e) => setSearch(e.target.value)}
+        onInput={(e) => setSearch(e.target.value)}  
         placeholder="search"
       />
       <button onClick={() => setSort("a")}>Low to high</button>
@@ -106,7 +120,9 @@ function Data() {
         )}
       </div>
 
-      {/* Modal */}
+    {/* POP UP HOVERING   DIALOGUE BOX*/ }
+
+
       {selectedProduct && (
         <div className="modal">
           <div className="modal-content">
