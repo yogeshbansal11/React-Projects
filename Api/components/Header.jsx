@@ -21,21 +21,6 @@ console.log(data);
             </Link>
           </li>
           )}
-          {/* <li>
-            <Link className="active nav-link" to={"/about/"}>
-            About
-            </Link>
-          </li>
-          <li>
-            <Link className="active nav-link" to={"/blog"}>
-            Blog
-            </Link>
-          </li>
-          <li>
-            <Link className="active nav-link" to={"/items"}>
-            Items
-            </Link>
-          </li> */}
         </ul>
       </div>
     </>
