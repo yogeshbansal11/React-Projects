@@ -54,7 +54,7 @@ function Data() {
 
     return filteredByRating;
   };
-    
+
   //  VIEW DETAILS PROCESS
 
 
@@ -120,7 +120,7 @@ function Data() {
         )}
       </div>
 
-    {/* POP UP HOVERING   DIALOGUE BOX*/ }
+     {/* POP UP HOVERING   DIALOGUE BOX*/ }
 
 
       {selectedProduct && (
