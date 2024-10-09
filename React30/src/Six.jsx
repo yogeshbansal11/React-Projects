@@ -20,6 +20,7 @@ const Six = () => {
       {data ? (
         <div>
           <h1>Title: {data.title}</h1>
+          
         </div>
       ) : (
         <p>Loading...</p>
