@@ -1,0 +1,27 @@
+Write all the step of redux toolkit in brief.
+
+1.   Install Redux Toolkit
+    npm install @reduxjs/toolkit react-redux
+
+2.   Create a Redux Slice
+     A slice contains the state, reducers, and actions for a specific feature.
+Use createSlice to create the slice
+
+3.   Configure the Store
+     Combine slices and configure the store using configureStore
+
+4.   Provide the Store to the App
+     Wrap your app with the <Provider> component from react-redux and pass the store
+
+5.  Use Redux State and Dispatch Actions in Components
+   Access the state with useSelector and dispatch actions with useDispatch
+
+6. These steps cover the basics of using Redux Toolkit in a React application.
+
+
+
+
+
+
+
+        
