@@ -5,7 +5,8 @@ import Three from './Three'
 import Four from './Four'
 import Five from './Five'
 import Six from './Six'
-import seven from './seven'
+import Seven from './Seven'
+import Ten from './Ten'
 
 
 const App = () => {
@@ -17,42 +18,10 @@ const App = () => {
       {/* <Four/> */}
       {/* <Five/> */}
       {/* <Six/> */}
-      <seven/>
+      {/* <Seven/>   */}
+      <Ten/>
     </div>
   )
 }
 
 export default App
-
-
-
-
-
-
-
-
-// import { useEffect, useState } from "react";
-// import "./App.css";
-// const App = () => {
-// const [isOnline, setIsOnline] = useState(true)
-// useEffect(() => {
-
-//   function setOnline() {
-// setIsOnline (true)
-//   }
-// function set0ffline() {
-// setIsonline( false)
-// }
-// window. addEventListener( 'online', setOnline)
-// window. addEventListener('offline', set0ffline)
-// return (() => {
-// window. removeEventListener( 'online', setOnline)
-// window. removeEventListener('offline', set0ffline)
-// })
-// },[])
-// return(
-//   <>
-//   <div>{isOnline ? "connected to internet" : "you are offline"}</div>
-//   </>
-// )
-// }
