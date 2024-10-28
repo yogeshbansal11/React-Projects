@@ -7,6 +7,10 @@ import Five from './Five'
 import Six from './Six'
 import Seven from './Seven'
 import Ten from './Ten'
+import Eleventh from './Eleventh'
+import Twelve from './Twelve'
+import Fourteen from './Fourteen'
+import Fifeteen from './Fifeteen'
 
 
 const App = () => {
@@ -19,7 +23,11 @@ const App = () => {
       {/* <Five/> */}
       {/* <Six/> */}
       {/* <Seven/>   */}
-      <Ten/>
+      {/* <Ten/> */}
+      {/* <Eleventh/> */}
+      {/* <Twelve/> */}
+      {/* <Fourteen/> */}
+      <Fifeteen/>
     </div>
   )
 }
